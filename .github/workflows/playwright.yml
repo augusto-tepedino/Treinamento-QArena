@@ -14,10 +14,10 @@ jobs:
         with:
           node-version: lts/*
       - name: Enable Corepack
-+      run: corepack enable
+        run: corepack enable
 
-+    - name: Install dependencies
-+      run: yarn install
+      - name: Install dependencies
+        run: yarn install
 
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
