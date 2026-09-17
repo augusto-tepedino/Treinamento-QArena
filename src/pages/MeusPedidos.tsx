@@ -25,7 +25,9 @@ export function MeusPedidos() {
 
   if (!usuario) return null
 
-  const pedidosDoUsuario = pedidos
+  const pedidosDoUsuario = pedidos.filter((p) => p.usuarioId === usuario.id)
+  const pedidosExibidos =
+    filtroStatus === 'Todos' ? pedidosDoUsuario : pedidosDoUsuario.filter((p) => p.status === filtroStatus)
 
   if (pedidosDoUsuario.length === 0) {
     return (
@@ -63,7 +65,7 @@ export function MeusPedidos() {
       </div>
 
       <div className="flex flex-col gap-4" data-testid="pedidos-lista">
-        {pedidosDoUsuario.map((pedido) => (
+        {pedidosExibidos.map((pedido) => (
           <GlassCard key={pedido.id} className="flex flex-col gap-4 p-6" data-testid={`pedidos-item-${pedido.numeroPedido}`}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>

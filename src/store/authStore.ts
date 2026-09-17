@@ -98,6 +98,20 @@ const usuariosSeed: Usuario[] = [
     contaSuspensa: true,
     criadoEm: '2026-01-01T00:00:00.000Z',
   },
+  {
+    id: 'seed-5',
+    nome: 'Usuário Pedidos',
+    email: 'usuario.orders@qazero.com',
+    cpf: '567.890.123-43',
+    telefone: '(11) 95678-9012',
+    senha: 'Qa@123456',
+    numeroConta: 'QA-0005',
+    creditos: 1000,
+    bloqueado: false,
+    permissao: true,
+    contaSuspensa: false,
+    criadoEm: '2026-01-01T00:00:00.000Z',
+  },
 ]
 
 export const useAuthStore = create<AuthState>()(
@@ -105,7 +119,7 @@ export const useAuthStore = create<AuthState>()(
     (set, get) => ({
       usuarios: usuariosSeed,
       usuarioLogado: null,
-      proximoNumeroConta: 5,
+      proximoNumeroConta: 6,
 
       cadastrar: (dados) => {
         const estado = get()

@@ -64,13 +64,22 @@ tests/
 ### ⏳ **Phase 3: E-Commerce Feature Deep Dives & Architectural Refactoring**
 * **Status:** ⏳ **Pending**
 * **Primary Objective:** Expand module regression coverage and transition from raw spec locators / POM to **Feature Actions / App Actions**.
-* **Feature Deep Dives:**
-  * **Store (`Loja`):** Search bar input filtering, category tab filtering, empty search states.
-  * **Cart (`Carrinho`):** Quantity increments/decrements, item removal, cart badge updating.
-  * **Profile (`Perfil`):** User info update and persistence.
-  * **Orders (`Meus Pedidos`):** Order history listing and status assertions.
-* **Architecture Evolution (POM ➔ Feature Actions):**
-  * Refactor repetitive Page Object / locator calls into composable action functions (e.g., `loginUser(page)`, `addProductToCart(page, productName)`, `completeCheckout(page)`).
+
+#### 🛒 **3.1: Store (`Loja`)**
+* [ ] **Search Bar Filtering:** Input search query ➔ Assert product cards match search filter.
+* [ ] **Category Tab Filtering:** Click category tabs ➔ Assert filtered product grid updates correctly.
+* [ ] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
+
+#### 🛒 **3.2: Cart (`Carrinho`)**
+* [ ] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.
+* [ ] **Item Removal:** Click remove item ➔ Assert item removed from cart list and total recalculated.
+* [ ] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
+
+#### 👤 **3.3: Profile (`Perfil`)**
+* [ ] **User Info Update:** Edit profile details ➔ Assert saved changes and persistence upon page reload.
+
+#### 📦 **3.4: Orders (`Meus Pedidos`)**
+* [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct status and total.
 
 ---
 

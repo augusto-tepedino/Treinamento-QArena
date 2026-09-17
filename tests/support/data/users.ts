@@ -19,8 +19,13 @@ export const USERS = {
     email: 'usuario.invalido@qazero.com',
     password: 'Qa@123456',
   },
+  ordersUser: {
+    email: 'usuario.orders@qazero.com',
+    password: 'Qa@123456',
+  },
 } as const
 
 export const STORAGE_STATE = {
   validUser: 'playwright/.auth/user.json',
+  ordersUser: 'playwright/.auth/orders-user.json',
 } as const
