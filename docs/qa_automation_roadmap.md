@@ -40,12 +40,12 @@ tests/
 * **Primary Objective:** Test identity management, validation rules, error handling, and session security.
 
 #### 🔐 **2.1: Login Scenarios** (Starting Point)
-* [ ] **Valid Login (Happy Path):** Login with `usuario.sucesso@qazero.com` / `Qa@123456` ➔ Assert URL redirect to `/app` and user session in sidebar.
-* [ ] **Invalid Email Format:** Input `invalidemail` ➔ Assert validation message `"Informe um e-mail em um formato válido"`.
-* [ ] **Invalid Credentials:** Input non-existent user (`usuario.invalido@qazero.com`) ➔ Assert general error message (`login-msg-erro-geral`).
-* [ ] **Blocked User:** Login with `usuario.bloqueado@qazero.com` ➔ Assert blocked account error message.
-* [ ] **Suspended User:** Login with `usuario.suspenso@qazero.com` ➔ Assert suspended account error message.
-* [ ] **No Permission User:** Login with `usuario.sempermissao@qazero.com` ➔ Verify login succeeds but access permissions are restricted.
+* [x] **Valid Login (Happy Path):** Login with `usuario.sucesso@qazero.com` / `Qa@123456` ➔ Assert URL redirect to `/app` and user session in sidebar.
+* [x] **Invalid Email Format:** Input `invalidemail` ➔ Assert validation message `"Informe um e-mail em um formato válido"`.
+* [x] **Invalid Credentials:** Input non-existent user (`usuario.invalido@qazero.com`) ➔ Assert general error message (`login-msg-erro-geral`).
+* [x] **Blocked User:** Login with `usuario.bloqueado@qazero.com` ➔ Assert blocked account error message.
+* [x] **Suspended User:** Login with `usuario.suspenso@qazero.com` ➔ Assert suspended account error message.
+* [x] **No Permission User:** Login with `usuario.sempermissao@qazero.com` ➔ Verify login succeeds but access permissions are restricted.
 
 #### 📝 **2.2: Cadastro (Registration Scenarios)**
 * [ ] **Successful Registration:** Fill form with valid name, generated CPF, email, and password ➔ Assert account creation & login.

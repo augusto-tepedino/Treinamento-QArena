@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/fixtures'
+import { test, expect } from '../support/fixtures'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
@@ -11,8 +11,8 @@ test('check home page main elements', async ({ page }) => {
 })
 
 test.describe('Go to login Page', async () => {
-  test('go to login page - header button', async ({ header, page }) => {
-    await header.clickEntrarBtn()
+  test('go to login page - header button', async ({ app, page }) => {
+    await app.navigation.clickEntrarBtn()
 
     await expect(page).toHaveURL('/login')
   })
@@ -31,8 +31,8 @@ test.describe('Go to login Page', async () => {
 })
 
 test.describe('Go to create account Page', async () => {
-  test('go to create account page - header button', async ({ header, page }) => {
-    await header.clickCriarContaBtn()
+  test('go to create account page - header button', async ({ app, page }) => {
+    await app.navigation.clickCriarContaBtn()
 
     await expect(page).toHaveURL('/cadastro')
   })

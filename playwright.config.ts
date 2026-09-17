@@ -22,10 +22,16 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [
+    // Optional, enables native HTML upload
+    ["html", { outputDir: "./playwright-report" }],
+    // Mandatory reporter for JSON results
+    ["json", { outputFile: "./playwright-report/report.json" }],
+  ],
+
   use: {
     baseURL: 'http://localhost:5173',
-    trace: 'on',
+    trace: 'retain-on-failure',
 
     actionTimeout: 5_000,
     navigationTimeout: 15_000,

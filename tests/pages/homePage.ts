@@ -10,4 +10,8 @@ export class HomePage {
   async clickEntrarBtn() {
     await this.page.getByTestId('home-btn-ja-tenho-conta').click()
   }
+
+  async clickCriarContaBtn() {
+    await this.page.getByTestId('home-btn-criar-conta').click()
+  }
 }
