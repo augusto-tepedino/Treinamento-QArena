@@ -48,16 +48,16 @@ tests/
 * [x] **No Permission User:** Login with `usuario.sempermissao@qazero.com` ➔ Verify login succeeds but access permissions are restricted.
 
 #### 📝 **2.2: Cadastro (Registration Scenarios)**
-* [ ] **Successful Registration:** Fill form with valid name, generated CPF, email, and password ➔ Assert account creation & login.
-* [ ] **CPF Validation:** Test valid vs. invalid CPF digits.
-* [ ] **Required Fields & Password Rules:** Test empty fields, weak passwords, and email mask validation.
-* [ ] **Duplicate User Handling:** Attempt registration with an already registered email.
+* [x] **Successful Registration:** Fill form with valid name, generated CPF, email, and password ➔ Assert account creation & login.
+* [x] **CPF Validation:** Test valid vs. invalid CPF digits.
+* [x] **Required Fields & Password Rules:** Test empty fields, weak passwords, and email mask validation.
+* [x] **Duplicate User Handling:** Attempt registration with an already registered email.
 
 #### 🔄 **2.3: Session, Persistence & Access Control**
-* [ ] **Protected Routes:** Direct navigation to `/perfil`, `/pedidos`, or `/app` without login ➔ Assert redirect to `/login`.
-* [ ] **Session Persistence:** Refresh browser on `/app` while logged in ➔ Assert user remains logged in (`localStorage` state retained).
-* [ ] **Logout Flow:** Click logout ➔ Assert redirection to home/login and clearing of session state.
-* [ ] **Playwright `storageState` Setup:** Configure `global.setup.ts` to save auth state for downstream automated tests.
+* [x] **Protected Routes:** Direct navigation to `/perfil`, `/pedidos`, or `/app` without login ➔ Assert redirect to `/login`.
+* [x] **Session Persistence:** Refresh browser on `/app` while logged in ➔ Assert user remains logged in (`localStorage` state retained).
+* [x] **Logout Flow:** Click logout ➔ Assert redirection to home/login and clearing of session state.
+* [x] **Playwright `storageState` Setup:** Configure `auth.setup.ts` to save auth state for downstream automated tests.
 
 ---
 

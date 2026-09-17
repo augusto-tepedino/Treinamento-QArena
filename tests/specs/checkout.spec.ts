@@ -1,4 +1,7 @@
 import { test, expect } from '../support/fixtures'
+import { STORAGE_STATE } from '../support/data/users'
+
+test.use({ storageState: STORAGE_STATE.validUser })
 
 test.describe('Checkout Flow', () => {
   const product = {
@@ -7,13 +10,8 @@ test.describe('Checkout Flow', () => {
     slug: 'caneca-bug-hunter',
   }
 
-  test.beforeEach(async ({ app, page }) => {
-    await app.login.goto()
-    await app.login.login({
-      email: 'usuario.sucesso@qazero.com',
-      password: 'Qa@123456',
-    })
-    await expect(page).toHaveURL('/app')
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/app')
   })
 
   test('Perform checkout happy path', async ({ app, page }) => {

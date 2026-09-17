@@ -1,5 +1,6 @@
 import { test, expect } from '../support/fixtures'
 import { HomePage } from '../pages/homePage'
+import { USERS } from '../support/data/users'
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
@@ -33,59 +34,34 @@ test.describe('Login', () => {
   })
 
   test('Validate Login - Sucesso', async ({ app, page }) => {
-    const user = {
-      email: 'usuario.sucesso@qazero.com',
-      password: 'Qa@123456',
-    }
-
-    await app.login.login(user)
-
-    await expect(page.getByTestId('dashboard-saudacao')).toContainText('Olá, Usuário')
+    await app.login.login(USERS.validUser)
+    await expect(page).toHaveURL('/app')
+    await expect(app.login.elements.validatedValidLogin).toContainText('Olá, Usuário')
   })
 
   test('Validate Login - Bloqueado', async ({ app }) => {
     test.fail(true, 'EXPECTED BUG: This test fails because the blocked user still logs in normally (Training bug).')
-    const user = {
-      email: 'usuario.sucesso@qazero.com',
-      password: 'Qa@123456',
-    }
-
-    await app.login.login(user)
+    await app.login.login(USERS.blockedUser)
 
     await expect(app.login.elements.msgErroGeral).toContainText('Usuário Bloqueado!')
   })
 
   test('Validate Login - Sem permissão', async ({ app, page }) => {
     test.fail(true, 'EXPECTED BUG: This test fails because it is expected a text, but only shows a full empty screen (Training bug).')
-    const user = {
-      email: 'usuario.sempermissao@qazero.com',
-      password: 'Qa@123456',
-    }
-
-    await app.login.login(user)
+    await app.login.login(USERS.noPermissionUser)
 
     //Fails b
     await expect(page.getByTestId('dashboard-conteudo')).toContainText('Usuário sem permissão!')
   })
 
   test('Validate Login - Suspenso', async ({ app }) => {
-    const user = {
-      email: 'usuario.suspenso@qazero.com',
-      password: 'Qa@123456',
-    }
-
-    await app.login.login(user)
+    await app.login.login(USERS.suspendedUser)
 
     await expect(app.login.elements.msgErroGeral).toContainText('Esta conta está suspensa e sem acesso ao sistema.')
   })
 
   test('Validate Login - Inválido', async ({ app }) => {
-    const user = {
-      email: 'usuario.invalido@qazero.com',
-      password: 'Qa@123456',
-    }
-
-    await app.login.login(user)
+    await app.login.login(USERS.invalidUser)
 
     await expect(app.login.elements.msgErroGeral).toContainText('Usuário não encontrado')
   })

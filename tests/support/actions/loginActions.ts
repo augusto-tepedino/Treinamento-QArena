@@ -5,10 +5,12 @@ export function createLoginActions(page: Page) {
   const userEmail = loginSection.getByLabel('E-mail')
   const userPassword = loginSection.getByPlaceholder('Sua senha')
   const loginButton = loginSection.getByRole('button', { name: 'Entrar' })
-  const linkCriarConta = page.getByRole('link', { name: 'Criar conta' })
+  const linkCriarConta = loginSection.getByRole('link', { name: 'Criar conta' })
 
   const msgErroEmail = loginSection.getByTestId('login-msg-erro-email')
   const msgErroGeral = page.getByTestId('login-msg-erro-geral')
+
+  const validatedValidLogin = page.getByTestId('dashboard-saudacao')
 
   return {
     elements: {
@@ -19,6 +21,8 @@ export function createLoginActions(page: Page) {
       linkCriarConta,
       msgErroEmail,
       msgErroGeral,
+
+      validatedValidLogin,
     },
 
     async goto() {
