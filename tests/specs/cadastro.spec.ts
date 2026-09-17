@@ -151,7 +151,3 @@ test.describe('Create Cadastro', () => {
     })
   })
 })
-
-/*
-A senha e a confirmação de senha devem ser idênticas
- */
