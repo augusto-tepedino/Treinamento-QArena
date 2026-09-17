@@ -142,7 +142,11 @@ test.describe('Create Cadastro', () => {
   })
 
   test.describe('UX', () => {
-    test.skip('validate Error message', async ({ app }) => {
+    test('validate Error Messages', async ({ app }) => {
+      test.fail(true, "EXPECTED BUG: This test fails because it misses the termos error message (Training bug)")
+
+      await app.cadastro.elements.cadastroButton.click()
+      await app.cadastro.validateErrorMessages()
 
     })
   })

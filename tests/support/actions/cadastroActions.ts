@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test'
+import { expect, type Page } from '@playwright/test'
 
 export function createCadastroActions(page: Page) {
 
@@ -6,7 +6,7 @@ export function createCadastroActions(page: Page) {
     nome: page.getByText('Informe seu nome completo'),
     email: page.getByText('Informe um e-mail em um formato válido'),
     cpf: page.getByText('Informe um CPF válido'),
-    telefone: page.getByText('Informe um telefone com DDD e número'),
+    telefone: page.getByTestId('cadastro-msg-erro-telefone'),
     senha: page.getByText('A senha deve ter pelo menos 6 caracteres'),
     confirmacaoSenha: page.getByTestId('cadastro-msg-erro-confirmar-senha'),
     termos: page.getByText('Você precisa concordar com os termos de uso'),
@@ -53,7 +53,16 @@ export function createCadastroActions(page: Page) {
       await senhaLabel.fill(cadastro.senha);
       await confirmacaoSenhaLabel.fill(cadastro.senha);
       await termosCheckbox.check();
+    },
 
+    async validateErrorMessages() {
+      await expect(alerts.nome).toBeVisible()
+      await expect(alerts.email).toBeVisible()
+      await expect(alerts.cpf).toBeVisible()
+      await expect(alerts.telefone).toBeVisible()
+      await expect(alerts.senha).toBeVisible()
+      await expect(alerts.confirmacaoSenha).toBeVisible()
+      await expect(alerts.termos).toBeVisible()
     }
   }
 }
