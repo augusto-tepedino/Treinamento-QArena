@@ -2,6 +2,8 @@ import { test, expect } from '../support/fixtures'
 import { HomePage } from '../pages/homePage'
 import { USERS } from '../support/data/users'
 
+test.use({ storageState: { cookies: [], origins: [] } })
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })

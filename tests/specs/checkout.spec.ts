@@ -1,7 +1,7 @@
 import { test, expect } from '../support/fixtures'
 import { STORAGE_STATE } from '../support/data/users'
 
-test.use({ storageState: STORAGE_STATE.validUser })
+test.use({ storageState: STORAGE_STATE.ordersUser })
 
 test.describe('Checkout Flow', () => {
   const product = {

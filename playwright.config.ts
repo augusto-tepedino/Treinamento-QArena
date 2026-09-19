@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
+import { STORAGE_STATE } from './tests/support/data/users.ts'
 
 /**
  * Read environment variables from file.
@@ -39,13 +40,20 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'setup',
-      testMatch: /.*\.setup\.ts/,
+      name: 'setup:user',
+      testMatch: /.*auth\.user\.setup\.ts/,
+    },
+    {
+      name: 'setup:orders',
+      testMatch: /.*auth\.orders\.setup\.ts/,
     },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup'],
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: STORAGE_STATE.validUser,
+      },
+      dependencies: ['setup:user', 'setup:orders'],
     },
   ],
 

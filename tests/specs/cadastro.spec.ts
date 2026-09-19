@@ -1,6 +1,8 @@
 import { test, expect } from '../support/fixtures'
 import { HomePage } from '../pages/homePage'
 
+test.use({ storageState: { cookies: [], origins: [] } })
+
 let alerts: any
 
 test.beforeEach(async ({ app }) => {
