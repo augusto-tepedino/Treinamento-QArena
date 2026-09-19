@@ -1,6 +1,8 @@
 import { test, expect } from '../support/fixtures'
 import { STORAGE_STATE } from '../support/data/users'
 
+test.use({ storageState: { cookies: [], origins: [] } })
+
 test.describe('Protected Routes', () => {
   test('Redirect to login when accessing /app unauthenticated', async ({ page }) => {
     await page.goto('/app')
