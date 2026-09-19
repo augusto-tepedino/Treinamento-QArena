@@ -1,5 +1,7 @@
 import { test, expect } from "../support/fixtures"
 
+test.use({ storageState: { cookies: [], origins: [] } })
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
