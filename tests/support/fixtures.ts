@@ -4,6 +4,7 @@ import { createCheckoutActions } from "./actions/checkoutActions"
 import { createLoginActions } from "./actions/loginActions"
 import { createLojaActions } from "./actions/lojaActions"
 import { createNavigationActions } from "./actions/navigationActions"
+import { createSidebarActions } from "./actions/sidebarActions"
 
 type App = {
   cadastro: ReturnType<typeof createCadastroActions>
@@ -11,6 +12,7 @@ type App = {
   login: ReturnType<typeof createLoginActions>
   loja: ReturnType<typeof createLojaActions>
   navigation: ReturnType<typeof createNavigationActions>
+  sidebar: ReturnType<typeof createSidebarActions>
 }
 
 export const test = base.extend<{ app: App }>({
@@ -20,10 +22,12 @@ export const test = base.extend<{ app: App }>({
       checkout: createCheckoutActions(page),
       login: createLoginActions(page),
       loja: createLojaActions(page),
-      navigation: createNavigationActions(page)
+      navigation: createNavigationActions(page),
+      sidebar: createSidebarActions(page),
     }
     await use(app)
   }
 })
 
 export { expect } from '@playwright/test'
+

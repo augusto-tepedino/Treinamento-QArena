@@ -66,9 +66,9 @@ tests/
 * **Primary Objective:** Expand module regression coverage and transition from raw spec locators / POM to **Feature Actions / App Actions**.
 
 #### 🛒 **3.1: Store (`Loja`)**
-* [ ] **Search Bar Filtering:** Input search query ➔ Assert product cards match search filter.
-* [ ] **Category Tab Filtering:** Click category tabs ➔ Assert filtered product grid updates correctly.
-* [ ] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
+* [x] **Search Bar Filtering:** Input search query ➔ Assert product cards match search filter.
+* [x] **Category Tab Filtering:** Click category tabs ➔ Assert filtered product grid updates correctly.
+* [x] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
 
 #### 🛒 **3.2: Cart (`Carrinho`)**
 * [ ] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.

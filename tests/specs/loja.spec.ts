@@ -76,7 +76,7 @@ test.describe('Add produt to cart', () => {
     await app.loja.goto()
   })
 
-  test('Add Available Product', async ({ app, page }) => {
+  test('Add Available Products', async ({ app, page }) => {
     const listaDeCompras = [{
       name: 'Camiseta Testei e Quebrei',
       amount: Math.floor(Math.random() * 3) + 1,
@@ -90,19 +90,29 @@ test.describe('Add produt to cart', () => {
       amount: Math.floor(Math.random() * 2),
     }
     ]
+    const totalAmount = listaDeCompras.reduce((accumulator, item) => accumulator + item.amount, 0);
     let somaProdutos = 0
 
     for (const produto of listaDeCompras) {
       for (let i = 0; i < produto.amount; i++) {
-        await page.getByTestId(/^loja-card-/)
-          .filter({ hasText: produto.name })
-          .getByRole('button', { name: 'Adicionar' })
-          .click();
-        await expect(app.loja.elements.toastSucesso.last()).toHaveText(`${produto.name} adicionado ao carrinho`)
+        await app.loja.AdicionarProdutoCarrinho(produto.name)
+        await expect(page.getByTestId('toast-sucesso').last()).toHaveText(`${produto.name} adicionado ao carrinho`)
         somaProdutos++
-        await expect(page.getByTestId('app-sidebar-badge-carrinho')).toHaveText(somaProdutos.toString())
+        await app.sidebar.validateCartBadgeCount(somaProdutos)
       }
     }
+    await app.sidebar.validateCartBadgeCount(totalAmount)
+  })
 
+  test('Add Unavailable Product', async ({ app, page }) => {
+    test.fail(true, "EXPECTED BUG: This test fails because there is not toast-falha and the itens that are esgotados are being able to be added to the cart (Training bug).")
+    const produto = {
+      name: 'Caneca erro 404',
+      amount: 1,
+    }
+
+    await app.loja.AdicionarProdutoCarrinho(produto.name)
+    await expect(page.getByTestId('toast-falha')).toHaveText(`${produto.name} está esgotado`)
+    await expect(app.sidebar.elements.cartBadge).toBeHidden()
   })
 })
