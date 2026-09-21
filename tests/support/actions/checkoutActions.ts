@@ -8,6 +8,7 @@ export function createCheckoutActions(page: Page) {
   const btnFinalizePurchase = page.getByRole('button', { name: 'Finalizar compra' })
   const shopHeading = page.getByRole('heading', { name: 'Loja' })
   const checkoutHeading = page.getByRole('heading', { name: 'Checkout' })
+  const orderCompletedHeader = page.getByRole('heading', { name: 'Pedido realizado' })
 
   return {
     elements: {
@@ -16,6 +17,7 @@ export function createCheckoutActions(page: Page) {
       totalValue,
       shopHeading,
       checkoutHeading,
+      orderCompletedHeader
     },
 
     getProductCard(productName: string) {

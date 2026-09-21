@@ -52,7 +52,7 @@ test.describe('Checkout Flow', () => {
     await app.checkout.finalizePurchase()
 
     // Confirm Order Completed & Credits updated
-    await app.checkout.elements.orderCompletedHeader.click()
+    await expect(app.checkout.elements.orderCompletedHeader).toBeVisible()
     await expect(app.sidebar.elements.userCreditsBadge).toHaveText('960.1')
   })
 })
