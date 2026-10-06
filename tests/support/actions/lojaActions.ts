@@ -19,14 +19,12 @@ export function createLojaActions(page: Page) {
     },
 
     async AdicionarProdutoCarrinho(produto: any) {
-      for (const item of produto) {
-        for (let i = 0; i < item.amount; i++) {
+      for (let i = 0; i < item.amount; i++) {
 
-          await page.getByTestId(/^loja-card-/)
-            .filter({ hasText: item.name })
-            .getByRole('button', { name: 'Adicionar' })
-            .click();
-        }
+        await page.getByTestId(/^loja-card-/)
+          .filter({ hasText: item.name })
+          .getByRole('button', { name: 'Adicionar' })
+          .click();
       }
     }
   }

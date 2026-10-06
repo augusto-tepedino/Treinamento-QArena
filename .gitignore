@@ -31,3 +31,4 @@ dist-apk
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/.playwright-mcp/

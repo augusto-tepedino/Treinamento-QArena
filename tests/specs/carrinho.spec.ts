@@ -56,7 +56,9 @@ test.describe('cart state validation', () => {
       }]
 
     await app.loja.goto()
-    await app.loja.AdicionarProdutoCarrinho(products)
+    for (const product of products) {
+      await app.loja.AdicionarProdutoCarrinho(product)
+    }
 
     await app.carrinho.goto()
     for (const item of products) {
