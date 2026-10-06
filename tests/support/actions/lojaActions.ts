@@ -19,10 +19,10 @@ export function createLojaActions(page: Page) {
     },
 
     async AdicionarProdutoCarrinho(produto: any) {
-      for (let i = 0; i < item.amount; i++) {
+      for (let i = 0; i < produto.amount; i++) {
 
         await page.getByTestId(/^loja-card-/)
-          .filter({ hasText: item.name })
+          .filter({ hasText: produto.name })
           .getByRole('button', { name: 'Adicionar' })
           .click();
       }
