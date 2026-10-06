@@ -71,12 +71,17 @@ tests/
 * [x] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
 
 #### 🛒 **3.2: Cart (`Carrinho`)**
-* [ ] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.
-* [ ] **Item Removal:** Click remove item ➔ Assert item removed from cart list and total recalculated.
-* [ ] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
+* [x] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.
+* [x] **Item Removal:** Click remove item ➔ Assert item removed from cart list and total recalculated.
+* [x] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
 
 #### 👤 **3.3: Profile (`Perfil`)**
-* [ ] **User Info Update:** Edit profile details ➔ Assert saved changes and persistence upon page reload.
+* [ ] **User Info Update (Happy Path):** Update name, email, and phone ➔ Assert success toast `"Dados atualizados com sucesso"` and persistence upon page reload.
+* [ ] **Invalid Email Format:** Enter invalid email format (e.g. `usuario@invalido`) ➔ Assert validation error message `"Informe um e-mail em um formato válido"`.
+* [ ] **Successful Password Change:** Fill current password, new password (>= 6 chars), and matching confirmation ➔ Assert success toast `"Senha alterada com sucesso"` and input field reset.
+* [ ] **Password Minimum Length Validation:** Enter new password with fewer than 6 characters ➔ Assert error message `"A nova senha deve ter pelo menos 6 caracteres"`.
+* [ ] **Password Mismatch Validation:** Enter mismatching confirmation password ➔ Assert error message `"A confirmação não é igual à nova senha"`.
+
 
 #### 📦 **3.4: Orders (`Meus Pedidos`)**
 * [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct status and total.

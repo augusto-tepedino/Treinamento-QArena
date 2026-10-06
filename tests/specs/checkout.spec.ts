@@ -37,8 +37,9 @@ test.describe('Checkout Flow', () => {
     await expect(app.checkout.elements.cartItems.getByText(product.price, { exact: true })).toBeVisible()
     await expect(app.checkout.getCartItemQuantity(product.slug)).toHaveText('1')
 
+
     // Proceed to Checkout
-    await app.checkout.goToCheckout()
+    await app.carrinho.elements.checkoutButton.click()
     await expect(page).toHaveURL('/app/checkout')
     await expect(app.checkout.elements.checkoutHeading).toBeVisible()
     await expect(app.checkout.elements.summarySection).toBeVisible()

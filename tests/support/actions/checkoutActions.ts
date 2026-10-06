@@ -32,6 +32,10 @@ export function createCheckoutActions(page: Page) {
       return page.getByTestId(`carrinho-quantidade-${productSlug}`)
     },
 
+    getCartItemValue(productSlug: string) {
+      return page.getByTestId(`carrinho-subtotal-${productSlug}`)
+    },
+
     async addProductToCart(productName: string) {
       const card = this.getProductCard(productName)
       await card.getByRole('button', { name: 'Adicionar' }).click()

@@ -18,11 +18,14 @@ export function createLojaActions(page: Page) {
       await page.getByPlaceholder('Buscar produto').fill(produto)
     },
 
-    async AdicionarProdutoCarrinho(produto: string) {
-      await page.getByTestId(/^loja-card-/)
-        .filter({ hasText: produto })
-        .getByRole('button', { name: 'Adicionar' })
-        .click();
+    async AdicionarProdutoCarrinho(produto: any) {
+      for (let i = 0; i < produto.amount; i++) {
+
+        await page.getByTestId(/^loja-card-/)
+          .filter({ hasText: produto.name })
+          .getByRole('button', { name: 'Adicionar' })
+          .click();
+      }
     }
   }
 }

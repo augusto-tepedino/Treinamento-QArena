@@ -32,6 +32,10 @@ export function createNavigationActions(page: Page) {
       headerBtnCriarConta,
     },
 
+    async goToLoggedArea() {
+      await page.goto('/app')
+    },
+
     async clickHomeBtn() {
       await headerBtnHome.click()
     },
