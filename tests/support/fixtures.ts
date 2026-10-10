@@ -5,6 +5,7 @@ import { createCheckoutActions } from "./actions/checkoutActions"
 import { createLoginActions } from "./actions/loginActions"
 import { createLojaActions } from "./actions/lojaActions"
 import { createNavigationActions } from "./actions/navigationActions"
+import { createPerfilActions } from "./actions/perfilActions"
 import { createSidebarActions } from "./actions/sidebarActions"
 
 type App = {
@@ -14,6 +15,7 @@ type App = {
   login: ReturnType<typeof createLoginActions>
   loja: ReturnType<typeof createLojaActions>
   navigation: ReturnType<typeof createNavigationActions>
+  perfil: ReturnType<typeof createPerfilActions>
   sidebar: ReturnType<typeof createSidebarActions>
 }
 
@@ -26,6 +28,7 @@ export const test = base.extend<{ app: App }>({
       login: createLoginActions(page),
       loja: createLojaActions(page),
       navigation: createNavigationActions(page),
+      perfil: createPerfilActions(page),
       sidebar: createSidebarActions(page),
     }
     await use(app)

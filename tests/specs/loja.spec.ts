@@ -94,10 +94,10 @@ test.describe('Add produt to cart', () => {
     let somaProdutos = 0
 
     for (const produto of listaDeCompras) {
-      for (let i = 0; i < produto.amount; i++) {
-        await app.loja.AdicionarProdutoCarrinho(produto.name)
+      if (produto.amount > 0) {
+        await app.loja.AdicionarProdutoCarrinho(produto)
         await expect(page.getByTestId('toast-sucesso').last()).toHaveText(`${produto.name} adicionado ao carrinho`)
-        somaProdutos++
+        somaProdutos += produto.amount
         await app.sidebar.validateCartBadgeCount(somaProdutos)
       }
     }
