@@ -76,15 +76,18 @@ tests/
 * [x] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
 
 #### 👤 **3.3: Profile (`Perfil`)**
-* [ ] **User Info Update (Happy Path):** Update name, email, and phone ➔ Assert success toast `"Dados atualizados com sucesso"` and persistence upon page reload.
-* [ ] **Invalid Email Format:** Enter invalid email format (e.g. `usuario@invalido`) ➔ Assert validation error message `"Informe um e-mail em um formato válido"`.
-* [ ] **Successful Password Change:** Fill current password, new password (>= 6 chars), and matching confirmation ➔ Assert success toast `"Senha alterada com sucesso"` and input field reset.
-* [ ] **Password Minimum Length Validation:** Enter new password with fewer than 6 characters ➔ Assert error message `"A nova senha deve ter pelo menos 6 caracteres"`.
-* [ ] **Password Mismatch Validation:** Enter mismatching confirmation password ➔ Assert error message `"A confirmação não é igual à nova senha"`.
-
+* [x] **User Info Update (Happy Path):** Update name, email, and phone ➔ Assert success toast `"Dados atualizados com sucesso"` and persistence upon page reload.
+* [x] **Invalid Email Format:** Enter invalid email format (e.g. `usuario@invalido`) ➔ Assert validation error message `"Informe um e-mail em um formato válido"`.
+* [x] **Successful Password Change:** Fill current password, new password (>= 6 chars), and matching confirmation ➔ Assert success toast `"Senha alterada com sucesso"` and input field reset.
+* [x] **Password Minimum Length Validation:** Enter new password with fewer than 6 characters ➔ Assert error message `"A nova senha deve ter pelo menos 6 caracteres"`.
+* [x] **Password Mismatch Validation:** Enter mismatching confirmation password ➔ Assert error message `"A confirmação não é igual à nova senha"`.
 
 #### 📦 **3.4: Orders (`Meus Pedidos`)**
-* [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct status and total.
+* [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct order ID, date, status, and total price.
+* [ ] **Empty Orders State:** Access `/app/pedidos` with a user account with no past purchases ➔ Assert empty orders placeholder message and link to store.
+* [ ] **Order Item Details Inspection:** Expand/click an order card ➔ Assert purchased item names, unit prices, quantities, and total breakdown match checkout details.
+* [ ] **Order Status Badge Verification:** Assert status badge rendering (e.g., `"Concluído"`, `"Em processamento"`, or `"Cancelado"`).
+* [ ] **Multiple Orders Sorting & Ordering:** Create multiple purchases ➔ Assert orders are listed chronologically with the most recent order displayed first.
 
 ---
 

@@ -29,6 +29,18 @@ test.describe('Perfil', () => {
 
       await expect(app.perfil.elements.msgErroEmail).toHaveText('Informe um e-mail em um formato válido')
     })
+
+    test('Persistir o nome e e-mail e refletir na barra lateral após recarregar a página', async ({ app, page }) => {
+      const novoNome = 'Usuário Persistente'
+      const novoEmail = 'persistente@qazero.com'
+
+      await app.perfil.salvarMeusDados({ nome: novoNome, email: novoEmail })
+      await page.reload()
+
+      await expect(page.getByTestId('perfil-input-nome')).toHaveValue(novoNome)
+      await expect(page.getByTestId('perfil-input-email')).toHaveValue(novoEmail)
+      await expect(app.sidebar.elements.userName).toHaveText(novoNome)
+    })
   })
 
   test.describe('Alterar Senha', () => {
@@ -85,6 +97,12 @@ test.describe('Perfil', () => {
       })
 
       await expect(page.getByText('A senha atual está incorreta')).toBeVisible()
+    })
+
+    test('Exibir mensagem de erro ao submeter formulário de alteração de senha com campos vazios', async ({ app }) => {
+      await app.perfil.alterarSenha({ atual: '', nova: '', confirmacao: '' })
+
+      await expect(app.perfil.elements.msgErroNovaSenha).toHaveText('A nova senha deve ter pelo menos 6 caracteres')
     })
   })
 })
