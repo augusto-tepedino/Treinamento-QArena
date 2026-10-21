@@ -116,7 +116,6 @@ const pedidosSeed: Pedido[] = [
 
 interface PedidosState {
   pedidos: Pedido[]
-  proximoNumero: number
   criarPedido: (dados: DadosNovoPedido) => Pedido
 }
 
@@ -124,11 +123,22 @@ export const usePedidosStore = create<PedidosState>()(
   persist(
     (set, get) => ({
       pedidos: pedidosSeed,
-      proximoNumero: 7,
 
       criarPedido: (dados) => {
         const estado = get()
-        const numeroPedido = `PED-${String(estado.proximoNumero).padStart(4, '0')}`
+        const pedidosDoUsuario = estado.pedidos.filter((p) => p.usuarioId === dados.usuarioId)
+        const numerosExistentes = pedidosDoUsuario
+          .map((p) => {
+            const match = p.numeroPedido.match(/PED-(\d+)/)
+            return match ? parseInt(match[1], 10) : 0
+          })
+          .filter((n) => !isNaN(n))
+
+        const proximoNumeroUsuario = numerosExistentes.length > 0
+          ? Math.max(...numerosExistentes) + 1
+          : 1
+
+        const numeroPedido = `PED-${String(proximoNumeroUsuario).padStart(4, '0')}`
         const status = statusPossiveis[Math.floor(Math.random() * statusPossiveis.length)]
 
         const pedido: Pedido = {
@@ -139,7 +149,7 @@ export const usePedidosStore = create<PedidosState>()(
           criadoEm: new Date().toISOString(),
         }
 
-        set({ pedidos: [...estado.pedidos, pedido], proximoNumero: estado.proximoNumero + 1 })
+        set({ pedidos: [...estado.pedidos, pedido] })
         return pedido
       },
     }),
