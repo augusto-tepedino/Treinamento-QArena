@@ -1,21 +1,23 @@
 import { type Page } from '@playwright/test'
 
 export function createPerfilActions(page: Page) {
-  // Shared locators needed by both actions and spec assertions
   const inputTelefone = page.getByTestId('perfil-input-telefone')
   const inputSenhaAtual = page.getByTestId('perfil-input-senha-atual')
   const inputNovaSenha = page.getByTestId('perfil-input-nova-senha')
   const inputConfirmarNovaSenha = page.getByTestId('perfil-input-confirmar-nova-senha')
+  const msgErroEmail = page.getByTestId('perfil-msg-erro-email')
+  const msgErroNovaSenha = page.getByTestId('perfil-msg-erro-nova-senha')
+  const msgErroConfirmarNovaSenha = page.getByTestId('perfil-msg-erro-confirmar-nova-senha')
 
   return {
     elements: {
       inputTelefone,
-      msgErroEmail: page.getByTestId('perfil-msg-erro-email'),
+      msgErroEmail,
       inputSenhaAtual,
       inputNovaSenha,
       inputConfirmarNovaSenha,
-      msgErroNovaSenha: page.getByTestId('perfil-msg-erro-nova-senha'),
-      msgErroConfirmarNovaSenha: page.getByTestId('perfil-msg-erro-confirmar-nova-senha'),
+      msgErroNovaSenha,
+      msgErroConfirmarNovaSenha,
     },
 
     async goto() {

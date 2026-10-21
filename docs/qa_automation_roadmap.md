@@ -21,87 +21,97 @@ tests/
 ## 🎯 2. Phased Implementation Roadmap
 
 ### ✅ **Phase 1: Foundational E2E Happy Path & Diverse Locators** — [COMPLETED]
-* **Status:** ✅ **Completed** (`tests/e2e/checkoutHappyPath.spec.ts` fully implemented)
-* **Primary Objective:** ✅ Validate the core business value journey (Can a user buy a product from start to finish?) while establishing locator fundamentals.
-* **Accomplished Scenarios:**
+
+- **Status:** ✅ **Completed** (`tests/e2e/checkoutHappyPath.spec.ts` fully implemented)
+- **Primary Objective:** ✅ Validate the core business value journey (Can a user buy a product from start to finish?) while establishing locator fundamentals.
+- **Accomplished Scenarios:**
   1. **Login:** Navigate to `/login` and authenticate with `usuario.sucesso@qazero.com` / `Qa@123456`.
   2. **Product Discovery:** Navigate to `/app/loja`, locate product using `.filter({ hasText: 'Caneca Bug Hunter' })`, and add to cart.
   3. **Toast & Badge Assertion:** Assert toast notification and sidebar cart badge increment to `'1'`.
   4. **Cart Management:** View `/app/carrinho`, verify product listing, unit price, quantity badge, and proceed to checkout.
   5. **Checkout & Summary:** Verify checkout summary section (`Resumo do pedido`), product price, and total value.
   6. **Confirmation & Credits:** Finalize purchase, click order confirmation heading, and verify QA credit balance updated to `'960.1'`.
-* **Practiced Locators:**
-  * `getByLabel`, `getByPlaceholder`, `getByRole`, locator filters (`locator('div.glass...').filter(...)`), DOM parent traversal (`locator('..')`), `getByTestId`.
+- **Practiced Locators:**
+  - `getByLabel`, `getByPlaceholder`, `getByRole`, locator filters (`locator('div.glass...').filter(...)`), DOM parent traversal (`locator('..')`), `getByTestId`.
 
 ---
 
 ### ⏳ **Phase 2: Authentication, Session & Access Control Deep Dives**
-* **Status:** ⏳ **Next Up** (Starting with **2.1 Login**)
-* **Primary Objective:** Test identity management, validation rules, error handling, and session security.
+
+- **Status:** ⏳ **Next Up** (Starting with **2.1 Login**)
+- **Primary Objective:** Test identity management, validation rules, error handling, and session security.
 
 #### 🔐 **2.1: Login Scenarios** (Starting Point)
-* [x] **Valid Login (Happy Path):** Login with `usuario.sucesso@qazero.com` / `Qa@123456` ➔ Assert URL redirect to `/app` and user session in sidebar.
-* [x] **Invalid Email Format:** Input `invalidemail` ➔ Assert validation message `"Informe um e-mail em um formato válido"`.
-* [x] **Invalid Credentials:** Input non-existent user (`usuario.invalido@qazero.com`) ➔ Assert general error message (`login-msg-erro-geral`).
-* [x] **Blocked User:** Login with `usuario.bloqueado@qazero.com` ➔ Assert blocked account error message.
-* [x] **Suspended User:** Login with `usuario.suspenso@qazero.com` ➔ Assert suspended account error message.
-* [x] **No Permission User:** Login with `usuario.sempermissao@qazero.com` ➔ Verify login succeeds but access permissions are restricted.
+
+- [x] **Valid Login (Happy Path):** Login with `usuario.sucesso@qazero.com` / `Qa@123456` ➔ Assert URL redirect to `/app` and user session in sidebar.
+- [x] **Invalid Email Format:** Input `invalidemail` ➔ Assert validation message `"Informe um e-mail em um formato válido"`.
+- [x] **Invalid Credentials:** Input non-existent user (`usuario.invalido@qazero.com`) ➔ Assert general error message (`login-msg-erro-geral`).
+- [x] **Blocked User:** Login with `usuario.bloqueado@qazero.com` ➔ Assert blocked account error message.
+- [x] **Suspended User:** Login with `usuario.suspenso@qazero.com` ➔ Assert suspended account error message.
+- [x] **No Permission User:** Login with `usuario.sempermissao@qazero.com` ➔ Verify login succeeds but access permissions are restricted.
 
 #### 📝 **2.2: Cadastro (Registration Scenarios)**
-* [x] **Successful Registration:** Fill form with valid name, generated CPF, email, and password ➔ Assert account creation & login.
-* [x] **CPF Validation:** Test valid vs. invalid CPF digits.
-* [x] **Required Fields & Password Rules:** Test empty fields, weak passwords, and email mask validation.
-* [x] **Duplicate User Handling:** Attempt registration with an already registered email.
+
+- [x] **Successful Registration:** Fill form with valid name, generated CPF, email, and password ➔ Assert account creation & login.
+- [x] **CPF Validation:** Test valid vs. invalid CPF digits.
+- [x] **Required Fields & Password Rules:** Test empty fields, weak passwords, and email mask validation.
+- [x] **Duplicate User Handling:** Attempt registration with an already registered email.
 
 #### 🔄 **2.3: Session, Persistence & Access Control**
-* [x] **Protected Routes:** Direct navigation to `/perfil`, `/pedidos`, or `/app` without login ➔ Assert redirect to `/login`.
-* [x] **Session Persistence:** Refresh browser on `/app` while logged in ➔ Assert user remains logged in (`localStorage` state retained).
-* [x] **Logout Flow:** Click logout ➔ Assert redirection to home/login and clearing of session state.
-* [x] **Playwright `storageState` Setup:** Configure `auth.setup.ts` to save auth state for downstream automated tests.
+
+- [x] **Protected Routes:** Direct navigation to `/perfil`, `/pedidos`, or `/app` without login ➔ Assert redirect to `/login`.
+- [x] **Session Persistence:** Refresh browser on `/app` while logged in ➔ Assert user remains logged in (`localStorage` state retained).
+- [x] **Logout Flow:** Click logout ➔ Assert redirection to home/login and clearing of session state.
+- [x] **Playwright `storageState` Setup:** Configure `auth.setup.ts` to save auth state for downstream automated tests.
 
 ---
 
 ### ⏳ **Phase 3: E-Commerce Feature Deep Dives & Architectural Refactoring**
-* **Status:** ⏳ **Pending**
-* **Primary Objective:** Expand module regression coverage and transition from raw spec locators / POM to **Feature Actions / App Actions**.
+
+- **Status:** ⏳ **Pending**
+- **Primary Objective:** Expand module regression coverage and transition from raw spec locators / POM to **Feature Actions / App Actions**.
 
 #### 🛒 **3.1: Store (`Loja`)**
-* [x] **Search Bar Filtering:** Input search query ➔ Assert product cards match search filter.
-* [x] **Category Tab Filtering:** Click category tabs ➔ Assert filtered product grid updates correctly.
-* [x] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
+
+- [x] **Search Bar Filtering:** Input search query ➔ Assert product cards match search filter.
+- [x] **Category Tab Filtering:** Click category tabs ➔ Assert filtered product grid updates correctly.
+- [x] **Empty Search State:** Input non-existent product name ➔ Assert empty search state message.
 
 #### 🛒 **3.2: Cart (`Carrinho`)**
-* [x] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.
-* [x] **Item Removal:** Click remove item ➔ Assert item removed from cart list and total recalculated.
-* [x] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
+
+- [x] **Quantity Increments/Decrements:** Increase and decrease item quantities ➔ Assert updated unit & total prices.
+- [x] **Item Removal:** Click remove item ➔ Assert item removed from cart list and total recalculated.
+- [x] **Cart Badge Count:** Add items from store ➔ Assert header/sidebar cart badge count updates dynamically.
 
 #### 👤 **3.3: Profile (`Perfil`)**
-* [x] **User Info Update (Happy Path):** Update name, email, and phone ➔ Assert success toast `"Dados atualizados com sucesso"` and persistence upon page reload.
-* [x] **Invalid Email Format:** Enter invalid email format (e.g. `usuario@invalido`) ➔ Assert validation error message `"Informe um e-mail em um formato válido"`.
-* [x] **Successful Password Change:** Fill current password, new password (>= 6 chars), and matching confirmation ➔ Assert success toast `"Senha alterada com sucesso"` and input field reset.
-* [x] **Password Minimum Length Validation:** Enter new password with fewer than 6 characters ➔ Assert error message `"A nova senha deve ter pelo menos 6 caracteres"`.
-* [x] **Password Mismatch Validation:** Enter mismatching confirmation password ➔ Assert error message `"A confirmação não é igual à nova senha"`.
+
+- [x] **User Info Update (Happy Path):** Update name, email, and phone ➔ Assert success toast `"Dados atualizados com sucesso"` and persistence upon page reload.
+- [x] **Invalid Email Format:** Enter invalid email format (e.g. `usuario@invalido`) ➔ Assert validation error message `"Informe um e-mail em um formato válido"`.
+- [x] **Successful Password Change:** Fill current password, new password (>= 6 chars), and matching confirmation ➔ Assert success toast `"Senha alterada com sucesso"` and input field reset.
+- [x] **Password Minimum Length Validation:** Enter new password with fewer than 6 characters ➔ Assert error message `"A nova senha deve ter pelo menos 6 caracteres"`.
+- [x] **Password Mismatch Validation:** Enter mismatching confirmation password ➔ Assert error message `"A confirmação não é igual à nova senha"`.
 
 #### 📦 **3.4: Orders (`Meus Pedidos`)**
-* [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct order ID, date, status, and total price.
-* [ ] **Empty Orders State:** Access `/app/pedidos` with a user account with no past purchases ➔ Assert empty orders placeholder message and link to store.
-* [ ] **Order Item Details Inspection:** Expand/click an order card ➔ Assert purchased item names, unit prices, quantities, and total breakdown match checkout details.
-* [ ] **Order Status Badge Verification:** Assert status badge rendering (e.g., `"Concluído"`, `"Em processamento"`, or `"Cancelado"`).
-* [ ] **Multiple Orders Sorting & Ordering:** Create multiple purchases ➔ Assert orders are listed chronologically with the most recent order displayed first.
+
+- [ ] **Empty Orders State:** Access `/app/pedidos` with a user account with no past purchases ➔ Assert empty orders placeholder message and link to store.
+- [ ] **Order History Listing:** Complete checkout flow ➔ Assert new order appears in order history list with correct order ID, date, status, and total price.
+- [ ] **Order Status Badge Verification:** Assert status badge rendering (e.g., `"Concluído"`, `"Em processamento"`, or `"Cancelado"`).
+- [ ] **Multiple Orders Sorting & Ordering:** Create multiple purchases ➔ Assert orders are listed chronologically with the most recent order displayed first.
 
 ---
 
 ### ⏳ **Phase 4: QArena Specific — Bug Verification & Exploratory Automation**
-* **Status:** ⏳ **Pending**
-* **Primary Objective:** Target QArena's **33 deliberate bugs** planted across the 7 application labs.
-* **Key Focus Areas:**
-  * **Bug Verification Tests:** Write targeted negative assertions for identified bugs (e.g., input mask glitches, price calculation edge cases).
-  * **Visual Smoke Tests:** Component rendering checks across different viewports (desktop, mobile).
-  * **Accessibility (A11y):** Basic keyboard navigation and screen reader attributes.
+
+- **Status:** ⏳ **Pending**
+- **Primary Objective:** Target QArena's **33 deliberate bugs** planted across the 7 application labs.
+- **Key Focus Areas:**
+  - **Bug Verification Tests:** Write targeted negative assertions for identified bugs (e.g., input mask glitches, price calculation edge cases).
+  - **Visual Smoke Tests:** Component rendering checks across different viewports (desktop, mobile).
+  - **Accessibility (A11y):** Basic keyboard navigation and screen reader attributes.
 
 ---
 
 ## 🤝 3. Pair Programming Learning Approach
 
-* **Student-Driven Coding:** The user writes all code directly in their IDE to build muscle memory and deep technical understanding.
-* **Coach Role:** AI provides task breakdowns, locator hints, architectural context, and code reviews.
+- **Student-Driven Coding:** The user writes all code directly in their IDE to build muscle memory and deep technical understanding.
+- **Coach Role:** AI provides task breakdowns, locator hints, architectural context, and code reviews.
