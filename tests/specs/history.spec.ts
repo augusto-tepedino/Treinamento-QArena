@@ -39,7 +39,7 @@ test.describe('user with order history', () => {
   })
 
   test('Validate Multiple Orders', async ({ app }) => {
-    const order = [{
+    const orders = [{
       ped: 'PED-0001',
       status: 'Entregue',
       data: '10/01/2026',
@@ -54,9 +54,9 @@ test.describe('user with order history', () => {
       total: 'R$ 29,70'
     }]
 
-    await app.history.validateOrderHistory(order[0])
-    await app.history.validateOrderHistory(order[1])
-
+    for (const order of orders) {
+      await app.history.validateOrderHistory(order)
+    }
   })
 
 })
