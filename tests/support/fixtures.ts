@@ -2,6 +2,7 @@ import { test as base } from "@playwright/test"
 import { createCadastroActions } from "./actions/cadastroActions"
 import { createCarrinhoActions } from "./actions/carrinhoActions"
 import { createCheckoutActions } from "./actions/checkoutActions"
+import { createHistoryActions } from "./actions/historyActions"
 import { createLoginActions } from "./actions/loginActions"
 import { createLojaActions } from "./actions/lojaActions"
 import { createNavigationActions } from "./actions/navigationActions"
@@ -12,6 +13,7 @@ type App = {
   cadastro: ReturnType<typeof createCadastroActions>
   carrinho: ReturnType<typeof createCarrinhoActions>
   checkout: ReturnType<typeof createCheckoutActions>
+  history: ReturnType<typeof createHistoryActions>
   login: ReturnType<typeof createLoginActions>
   loja: ReturnType<typeof createLojaActions>
   navigation: ReturnType<typeof createNavigationActions>
@@ -25,6 +27,7 @@ export const test = base.extend<{ app: App }>({
       cadastro: createCadastroActions(page),
       carrinho: createCarrinhoActions(page),
       checkout: createCheckoutActions(page),
+      history: createHistoryActions(page),
       login: createLoginActions(page),
       loja: createLojaActions(page),
       navigation: createNavigationActions(page),
